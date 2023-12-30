@@ -1,5 +1,6 @@
 {
     "default": {
+        "tags": "@testtag",
         "formatOptions": {
             "snippetInterface": "async-await"
         },
@@ -8,14 +9,15 @@
         ],
         "require": [
             "src/test/steps/*.ts",
-            "src/test/hooks/hooks.ts"
+            "src/hooks/hooks.ts"
         ],
         "dryRun": false,
         "requireModule": [
             "ts-node/register"
         ],
         "format": [
-            "html:cucumber-report.html"
+            "html:target/cucumber-report.html",
+            "json:target/cucumber-report.json"
         ]
     }
 }
