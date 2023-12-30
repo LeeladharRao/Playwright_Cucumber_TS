@@ -1,7 +1,7 @@
 import { LaunchOptions, chromium, firefox } from "@playwright/test";
 
 const options: LaunchOptions = {
-    headless: !true
+    headless: !process.env.HEAD
 }
 
 export const browserManager = () => {
@@ -13,7 +13,5 @@ export const browserManager = () => {
             return firefox.launch(options);
         default:
             throw new Error("BROWSER IS NOT CONFIGURED!!!");
-
     }
-
 }
