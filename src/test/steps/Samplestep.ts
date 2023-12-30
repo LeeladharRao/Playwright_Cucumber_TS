@@ -1,13 +1,19 @@
 import { Given, Then, setDefaultTimeout } from "@cucumber/cucumber"
 import { pageFixture } from "../../hooks/pageFixture";
+import SamplePage from "../../pages/samplePage";
 
-setDefaultTimeout(60 * 1000 * 5);
+let samplePage: SamplePage;
 
 Given('user is on Google home page', async function () {
-    await pageFixture.page.goto("https://www.google.com/");
-    // await pageFixture.page.waitForTimeout(3000);
+    samplePage = new SamplePage(pageFixture.page);
+    await samplePage.navigateToGoogle();
 });
 
-Then('search for playwright', async function () {
-    await pageFixture.page.locator("//textarea[@title='Search']").fill("Playwright");
+Then('search for {string}', async function (word) {
+    await samplePage.searchForText(word);
 });
+
+Then('search for {string} and search', async function (word) {
+    await samplePage.searchForTextAndSearch(word);
+});
+
